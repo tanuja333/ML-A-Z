@@ -6,10 +6,11 @@ Created on Sun Dec 29 21:40:11 2019
 """
 
 import collections
+import nltk.data
 import nltk.classify.util, nltk.metrics
 from nltk.classify import NaiveBayesClassifier, MaxentClassifier, SklearnClassifier
 import csv
-from sklearn import cross_validation
+#from sklearn import cross_validation
 from sklearn.svm import LinearSVC, SVC
 import random
 from nltk.corpus import stopwords
@@ -18,13 +19,13 @@ from nltk.collocations import BigramCollocationFinder
 from nltk.metrics import BigramAssocMeasures
  
 posdata = []
-with open('positive-data.csv', 'rb') as myfile:    
+with open('Restaurant_Reviews_positive.tsv', 'rt') as myfile:    
     reader = csv.reader(myfile, delimiter=',')
     for val in reader:
         posdata.append(val[0])        
  
 negdata = []
-with open('negative-data.csv', 'rb') as myfile:    
+with open('Restaurant_Reviews_negative.tsv', 'rt') as myfile:    
     reader = csv.reader(myfile, delimiter=',')
     for val in reader:
         negdata.append(val[0])            
@@ -54,25 +55,25 @@ def stopword_filtered_word_feats(words):
 def bigram_word_feats(words, score_fn=BigramAssocMeasures.chi_sq, n=200):
     bigram_finder = BigramCollocationFinder.from_words(words)
     bigrams = bigram_finder.nbest(score_fn, n)
-    """
-    print words
+    
+    print (words)
     for ngram in itertools.chain(words, bigrams): 
         if ngram not in stopset: 
-            print ngram
-    exit()
-    """    
+            print (ngram)
+    #exit()
+
     return dict([(ngram, True) for ngram in itertools.chain(words, bigrams)])
     
 def bigram_word_feats_stopwords(words, score_fn=BigramAssocMeasures.chi_sq, n=200):
     bigram_finder = BigramCollocationFinder.from_words(words)
     bigrams = bigram_finder.nbest(score_fn, n)
-    """
-    print words
+    
+    print (words)
     for ngram in itertools.chain(words, bigrams): 
         if ngram not in stopset: 
-            print ngram
-    exit()
-    """    
+            print (ngram)
+    #exit()
+     
     return dict([(ngram, True) for ngram in itertools.chain(words, bigrams) if ngram not in stopset])
  
 # Calculating Precision, Recall & F-measure
@@ -80,6 +81,9 @@ def evaluate_classifier(featx):
     
     negfeats = [(featx(f), 'neg') for f in word_split(negdata)]
     posfeats = [(featx(f), 'pos') for f in word_split(posdata)]
+    # negfeats = [(featx(movie_reviews.words(fileids=[f])), 'neg') for f in negdata]
+    # posfeats = [(featx(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
+ 
         
     negcutoff = len(negfeats)*3/4
     poscutoff = len(posfeats)*3/4
@@ -127,7 +131,7 @@ def evaluate_classifier(featx):
         print ('recall', (pos_recall + neg_recall) / 2)
         print ('f-measure', (pos_fmeasure + neg_fmeasure) / 2    )
                 
-        #classifier.show_most_informative_features()
+        classifier.show_most_informative_features()
     
     print ('')
     

@@ -39,7 +39,7 @@ classifier = GaussianNB()
 classifier.fit(X_train,y_train)
 y_pred= classifier.predict(X_test)
 
-#cal of metrix for selecting best model
+#cal of metric for selecting best model
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score,recall_score,f1_score
 cm=confusion_matrix(y_test,y_pred)
 acc=accuracy_score(y_test,y_pred)
