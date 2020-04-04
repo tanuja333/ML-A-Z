@@ -50,7 +50,28 @@ x_test=sc.transform(x_test)
 #Building ANN
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-  
 
+#initialising the ANN
+classifier = Sequential()
+#adding the input layer and first hidden layer
+#dense function -> initialise random weights
+#activation function for hidden layers is rectifiers and output layer is activation function is sigmoid
+#num of nodes in hidden layer = avg (nodes in input and output layer)
+classifier.add(Dense(11,activation='relu'))
+#adding 2nd hidden layer
+classifier.add(Dense(6,activation='relu'))
+#adding output layer
+#sigmoid is nothing but soft max function
+classifier.add(Dense(1,activation='sigmoid'))
+#compiling ANN
+#applying stochastic gradient descendant
+classifier.compile(optimizer='adam',loss='binary_crossentropy',metrics=['accuracy'])
+#Fitting ANN to training set
+classifier.fit(x_train,y_train,batch_size=10,nb_epoch=100)
 #making predictions and evaluating model
+y_pred=classifier.predict(x_test)
+y_pred=(y_pred>0.5)
 
+from sklearn.metrics import confusion_matrix,accuracy_score
+cm=confusion_matrix(y_test,y_pred)
+acc=accuracy_score(y_test,y_pred)
