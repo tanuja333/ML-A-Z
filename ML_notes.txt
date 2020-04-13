@@ -1,0 +1,82 @@
+NG Andrew
+linear regression--> 
+		there are assumptions in building linear regression model:(A Caveat)
+			1 Linearity
+			2 Homoscedasticity
+			3 Multivariate normality
+			4 Independence of errors
+			5 Lack of multicollinearity
+		y=mx+c
+		salary = b0+ b1*experience
+		ordinary least squares method
+		SUM(yi-yi^)^2--->min value will be taken
+		
+	simple linear regression: library used is linear model library.(sklearn)
+		pyplot-scatter
+		we use linear regression for linear dependency between variables(1 independent variable)
+	Multiple linear regression: 1 dependent variable on more than 1 independent variables
+		equation-> y=b0+b1*x1+b2*x2+b3*x3+......+bn*xn
+		Dummy variables for California and new york--> default state.
+		Dummy variable trap
+		
+		P-Value:
+			https://www.mathbootcamps.com/what-is-a-p-value/
+			https://dzone.com/articles/what-is-p-value-in-layman-terms  -->very good
+			https://www.youtube.com/watch?v=KS6KEWaoOOE   --> khan academy p value 
+			
+		If your p-value is less than the significance level you reject the null hypothesis and... therefore accept the actual hypothesis. Although a statistician will say you can never accept any hypothesis because it assumes too much. At least for our model, we accept the hypothesis to be part of it.
+
+		We like small p-values because if and only if a p-value is smaller than the significance level, we call it statistically significant.So it is used exactly like in simple linear regression.
+ 
+		From my understanding, if p-value is low, it means that the deviation from initial hypothesis is significant, so we can't ignore that. On the other hand, if p-value is high, it means it won't affect our predictions significantly, so we can discard them.
+		Building a model:
+		1 all in
+		2 backward elimination
+		3 forward elimination
+		4 Bidirectional elimination
+		building the multiple regression using backward elimination.
+		for building model for multiple regression we need to add x0=1 where statistical model library uses that value.
+		backward elimination is 1 method to remove non-significant variables
+		there are other 2 methods such as R squared or Adj R squared methods to make better decision making =)
+		
+		R squared and adj squared values: https://www.investopedia.com/ask/answers/012615/whats-difference-between-rsquared-and-adjusted-rsquared.asp
+	Polynomial linear regression: instead of different in variables, we have same variable in different powers in polynomial regression.
+		equation-> y = b0+b1*X1+b2*X1^2+...+bn*X1^n
+		used for exponential variable of independent varable--> forms parabola
+		ex: how diseases spread, etc..
+		polynomial is called as linear in regards to the co-efficient and not with X values.
+		It is the version of Multiple linear regression.
+		It is not linear regressors
+		
+		#polynomial regression
+		from sklearn.preprocessing import PolynomialFeatures
+	Support vector regression(SVR)/ SVM:
+		linear and non-linear regression
+		hyper-parameter-Epsilon
+		errors do not exceed a threshold
+	Decision tree regression:
+		CART- specification/classification and regression trees.
+		
+		
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+The Data Science Course 2019: Complete Data Science Bootcamp
+	Symbolic AI-> symbolic reasoning.
+		1 data collection
+		2 data pre processing
+		3 data cleansing/scrubbing--> spell check
+		4 data labeling and data categorization
+		5 missing values
+		
+		logistic regression- 0 or 1
+		cluster analysis- data within the clusters
+		
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+learned apart:
+SMOTE- Synthetic Minority Over-sampling TEchnique link - http://rikunert.com/SMOTE_explained
+		
+
+
+
+
+
