@@ -52,28 +52,19 @@ from mlxtend.frequent_patterns import association_rules
 df_sets = apriori(df_x, min_support=0.005, use_colnames=True)
 df_rules = association_rules(df_sets,metric='support',min_threshold= 0.005,support_only=True) 
 # if you use only "support", it called "ECLAT"
-'''
-output =[]
-for i in range(0, len(df_rules)):
-    output.append(['Rule:\t' + str(df_rules[i][2][0][0]), 'Effect:\t' + str(results[i][2][0][1]),
-                   'Support:\t' + str(results[i][1]), 'Confidence:\t' + str(results[i][2][0][2]),
-                   'Lift:\t' + str(results[i][2][0][3])])
-    for j in range (0, len(results[i][2][0][0])):
-        print(str(i)+' '+str(list(results[i][2][0][0])[j]))
 
+#in eclat you will get sets instead of all the outputs.
 #Change value of food to your choice
-food = 'chocolate'
+food ='almonds'
 print('Recommended: ')
 recommend = []
-for i in range(0, len(results)):
-    for j in range (0, len(results[i][2][0][0])):
-        if food in str(list(results[i][2][0][0])[j]):
-            for k in range (0, len(results[i][2][0][1])):
-                recommend.append((list(results[i][2][0][1])[k]))
-                
-recommend = list(dict.fromkeys(recommend)) #removes duplicates
+for i in range(0, len(df_rules)):
+        if food in list(df_rules.values[i][0]):
+                recommend.append(list(df_rules.values[i][1]))
+flat_list = [item for sublist in recommend for item in sublist]
+
+recommend = list(dict.fromkeys(flat_list)) #removes duplicates
 if len(recommend)>0:
     print(recommend)
 else:
     print('No recommendations')
-'''
